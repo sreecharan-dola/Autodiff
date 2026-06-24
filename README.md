@@ -10,7 +10,7 @@ Implements both **Forward Mode** and **Reverse Mode** Automatic Differentiation,
 
 ## Why This Project
 
-Most ML engineers use `loss.backward()` without understanding what happens inside. This project builds that mechanism from the ground up — dual numbers for forward mode, dynamic computation graphs for reverse mode, broadcasting-aware gradient propagation, and a working neural network on top.
+Rather than relying on existing frameworks, I built an automatic differentiation engine from the ground up to develop a deeper understanding of how gradients flow through computational graphs. The project covers forward-mode autodiff using dual numbers, reverse-mode autodiff, broadcasting-aware backpropagation, and a neural network implementation powered entirely by the engine.
 
 ---
 
