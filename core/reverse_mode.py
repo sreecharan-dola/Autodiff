@@ -224,14 +224,14 @@ def tanh(x):
     out.backprop = backprop
     return out
 
-def mse_loss(x, target):
-    x = to_node(x)
-    x_val = x.val.flatten() #flattening so it be easy to subtract from true value and find error
+def mse_loss(y_pred, target):
+    y_pred = to_node(y_pred)
+    y_pred_val = y_pred.val.flatten() #flattening so it be easy to subtract from true value and find error
     target = np.array(target).flatten()
-    out = Node( np.mean((target - x_val)**2), parent = [x] )
+    out = Node( np.mean((target - y_pred_val)**2), parent = [y_pred] )
 
     def backprop(grad):
-        x.der += broadcast_correct(x.der,  np.mean(2*(target - x_val)) * grad)
+        y_pred.der += broadcast_correct(y_pred.der,  np.mean(-2*(target - y_pred_val)) * grad)
     out.backprop = backprop
     return out
 
