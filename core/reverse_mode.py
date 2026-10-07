@@ -231,7 +231,7 @@ def mse_loss(y_pred, target):
     out = Node( np.mean((target - y_pred_val)**2), parent = [y_pred] )
 
     def backprop(grad):
-        y_pred.der += broadcast_correct(y_pred.der,  np.mean(-2*(target - y_pred_val)) * grad)
+        y_pred.der += broadcast_correct(y_pred.der,  (-2*(target - y_pred_val)/ len(target)) * grad)
     out.backprop = backprop
     return out
 
